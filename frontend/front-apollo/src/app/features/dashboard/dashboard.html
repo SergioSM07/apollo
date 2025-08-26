@@ -1,0 +1,10 @@
+<div class="dashboard-container">
+  <h2>Welcome to the Dashboard!</h2>
+
+  <p *ngIf="user$ | async as user">Logged in as: {{ user.email }}</p>
+
+  <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+
+  <!-- TODO: Add sections for courses, profile, etc. -->
+</div>
+

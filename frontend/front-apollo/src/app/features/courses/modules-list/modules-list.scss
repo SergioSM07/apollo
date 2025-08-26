@@ -1,0 +1,21 @@
+.modules-container {
+  padding: 20px;
+}
+
+.modules-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+mat-list-item {
+  margin-bottom: 10px; // Espacio entre elementos de la lista
+}
+
+mat-card {
+  cursor: pointer; // Indica que la tarjeta es clicable
+  transition: box-shadow 0.3s ease-in-out; // Animación suave al pasar el ratón
+}
+
+mat-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Sombra al pasar el ratón
+}

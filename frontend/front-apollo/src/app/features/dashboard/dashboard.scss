@@ -1,0 +1,16 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column; // Elementos apilados verticalmente
+  align-items: center; // Centrar horizontalmente
+  justify-content: center; // Centrar verticalmente (si el contenedor tiene altura)
+  padding: 20px;
+  text-align: center;
+}
+
+.dashboard-container h2 {
+  margin-bottom: 20px;
+}
+
+.dashboard-container button {
+  margin-top: 20px;
+}

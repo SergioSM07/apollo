@@ -1,0 +1,16 @@
+<div class="modules-container">
+  <h2>Training Modules</h2>
+
+  <mat-list *ngIf="modules$ | async as modules">
+    <mat-list-item *ngFor="let module of modules">
+      <mat-card [routerLink]="['/courses/modules', module.id]">
+        <mat-card-title>{{ module.name }}</mat-card-title>
+        <!-- TODO: Add description or image if available in Module interface -->
+      </mat-card>
+    </mat-list-item>
+  </mat-list>
+
+  <!-- TODO: Add a message if no modules are available -->
+</div>
+
+<p>modules-list works!</p>

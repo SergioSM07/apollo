@@ -1,0 +1,52 @@
+<div class="course-detail-container">
+    <mat-card *ngIf="course$ | async as course">
+        <mat-card-title>{{ course?.name }}</mat-card-title>
+        <!-- TODO: Display other course details like description -->
+    </mat-card>
+
+    <h3>Chapters</h3>
+
+    <!-- Mostrar progreso general -->
+    <div *ngIf="overallProgress$ | async as progress" class="overall-progress">
+      <p>Progress: {{ progress.completed }} / {{ progress.total }} Chapters Completed</p>
+    </div>
+
+    <mat-accordion> <!-- Usar mat-accordion para capítulos expandibles -->
+        <mat-expansion-panel *ngFor="let chapter of chaptersWithProgress$ | async">
+            <mat-expansion-panel-header>
+                <mat-panel-title>{{ chapter.name }}</mat-panel-title>
+                <!-- TODO: Show completion status or progress here -->
+                <mat-panel-description>
+                    <mat-checkbox [checked]="chapter.completed" (change)="toggleChapterCompletion(chapter)"
+                        (click)="$event.stopPropagation()">
+                        <!-- Detener propagación del evento para no expandir/colapsar el panel al hacer clic en el checkbox -->
+                        Completed
+                    </mat-checkbox>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Chapter content will go here.</p>
+            <!-- Contenido del capítulo -->
+            <div class="chapter-content">
+                <!-- TODO: Implement logic to display content based on chapter type -->
+                <p>Chapter content will go here.</p>
+
+                <div *ngIf="chapter.type === 'video'">
+                    <p>Video Player Placeholder</p>
+                    <iframe [src]="chapter.url | safeUrl:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div *ngIf="chapter.type === 'pdf'">
+                    <p>PDF Viewer Placeholder</p>
+                    <a [href]="chapter.url | safeUrl:'url'" target="_blank">View PDF</a>
+                </div>
+                <div *ngIf="chapter.type === 'text'">
+                    <p>{{ chapter.content }}</p>
+                </div>
+                <!-- TODO: Handle other content types -->
+            </div>
+            <!-- TODO: Add button to mark as completed -->
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <!-- TODO: Add a message if no chapters are available -->
+    <!-- TODO: Add elements for tracking user progress -->
+</div>
