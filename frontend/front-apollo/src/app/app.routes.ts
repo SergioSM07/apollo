@@ -7,6 +7,8 @@ import { DashboardComponent } from './features/dashboard/dashboard';
 import { ModulesListComponent } from './features/courses/modules-list/modules-list'; // Importar ModulesListComponent
 import { ModuleDetailComponent } from './features/courses/module-detail/module-detail'; // Importar ModuleDetailComponent
 import { CourseDetailComponent } from './features/courses/course-detail/course-detail'; // Importar CourseDetailComponent
+import { ProfileComponent } from './features/profile/profile'; // Importar ProfileComponent
+import { ContentUploadComponent } from './features/content-upload/content-upload';
 
 export const routes: Routes = [ // Importar un componente de ejemplo para ruta protegida
   { path: 'login', component: LoginComponent },
@@ -34,6 +36,17 @@ export const routes: Routes = [ // Importar un componente de ejemplo para ruta p
     component: CourseDetailComponent, // Componente para el detalle del curso/lista de capítulos
     canActivate: [authGuard] // Aplicar el guardia aquí
   },
+  // Nueva ruta protegida para el Perfil
+ {
+    path: 'profile',
+    component: ProfileComponent, // Componente para el perfil de usuario
+    canActivate: [authGuard] // Proteger con el guardia
+  },
+  {
+    path: 'upload',
+    component: ContentUploadComponent, // Componente para el perfil de usuario
+    canActivate: [authGuard] // Proteger con el guardia
+  }
   // TODO: Add a wildcard route for 404 page
   // TODO: Refine protected routes structure (e.g., child routes)
 ];

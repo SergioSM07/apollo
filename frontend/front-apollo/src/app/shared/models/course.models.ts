@@ -31,4 +31,23 @@ export interface UserProgress {
   completionDate?: Date; // Timestamp de finalización (puede ser un timestamp de Firestore)
   // Añadir otros campos si son necesarios (ej: tiempo dedicado, puntuación)
 }
-// TODO: Add more interfaces related to courses and training portal
+
+// Interfaz para la definición de una insignia
+export interface Badge {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  criteria: any; // Criterios para obtener la insignia (ej: { type: 'courseCompleted', courseId: 'abc' }) - Usar 'any' por ahora, refinar después
+  // Añadir otros campos si son necesarios
+}
+
+// Interfaz para una insignia obtenida por un usuario
+export interface UserBadge {
+  id: string; // Puede ser la combinación userId_badgeId
+  userId: string;
+  badgeId: string;
+  obtainedDate: Date; // Timestamp de cuándo se obtuvo
+  courseId?: string; // Opcional: referenciar el curso que otorgó la insignia
+  // Añadir otros campos si son necesarios
+}
