@@ -39,10 +39,10 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.errorMessage = null; // Limpiar errores anteriores
       const { email, password } = this.registerForm.value;
-      this.authService.registerWithEmailAndPassword(email, password) // Llamar al servicio de autenticación
+      this.authService.register(email, password) // Llamar al servicio de autenticación
         .then((userCredential) => {
           // Registro exitoso
-          console.log('Registration successful!', userCredential.user);
+          console.log('Registration successful!', userCredential?.email);
           // Redirigir al usuario después del registro exitoso (por ejemplo, al login o al dashboard)
           this.router.navigate(['/']); // Ejemplo: navegar a la raíz
         })

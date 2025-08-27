@@ -36,5 +36,18 @@
         <!-- TODO: Add a message if no badges obtained -->
     </div>
 
-    <!-- TODO: Display user's course history -->
+    <!-- Sección de Historial de Cursos Completados -->
+    <h3>Completed Course History</h3>
+
+    <div *ngIf="completedCoursesHistory$ | async as completedCourses" class="course-history-list">
+        <mat-list>
+            <mat-list-item *ngFor="let course of completedCourses">
+                <h4 matListItemTitle>{{ course.courseDetails?.name }}</h4>
+                <p matListItemLine>Completed on: {{ formatCompletionDate(course.completionDate) }}</p>
+                <!-- TODO: Add more course details if needed -->
+            </mat-list-item>
+        </mat-list>
+
+        <!-- TODO: Add a message if no courses completed -->
+    </div>
 </div>

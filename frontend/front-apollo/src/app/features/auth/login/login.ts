@@ -41,7 +41,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.errorMessage = null; // Limpiar errores anteriores
-      this.authService.loginWithEmailAndPassword(email, password) // Llamar al servicio de autenticación
+      this.authService.login(email, password) // Llamar al servicio de autenticación
         .then((userCredential) => {
           // Inicio de sesión exitoso
           this.router.navigate(['/']); // Example: Navigate to the root

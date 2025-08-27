@@ -40,14 +40,4 @@ export class BadgesService {
     );
   }
 
-  // TODO: Add method for granting a badge (consider Cloud Functions for automated granting based on criteria)
-  // grantBadge(userId: string, badgeId: string, courseId?: string): Promise<void> {
-  //   const userBadgeDocRef = doc(this.firestore, 'userBadges', `${userId}_${badgeId}`);
-  //   return setDoc(userBadgeDocRef, {
-  //     userId: userId,
-  //     badgeId: badgeId,
-  //     obtainedDate: new Date(),
-  //     courseId: courseId || null // Store courseId if provided
-  //   }, { merge: true });
-  // }
 }

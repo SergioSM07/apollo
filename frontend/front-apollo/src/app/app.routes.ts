@@ -1,52 +1,43 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/login/login';
 import { RegisterComponent } from './features/auth/register/register';
-import { authGuard } from './core/guards/auth-guard'; // Importar authGuard
+import { authGuard } from './core/guards/auth-guard';
 import { DashboardComponent } from './features/dashboard/dashboard';
-// TODO: Create these components and their directories
-import { ModulesListComponent } from './features/courses/modules-list/modules-list'; // Importar ModulesListComponent
-import { ModuleDetailComponent } from './features/courses/module-detail/module-detail'; // Importar ModuleDetailComponent
-import { CourseDetailComponent } from './features/courses/course-detail/course-detail'; // Importar CourseDetailComponent
-import { ProfileComponent } from './features/profile/profile'; // Importar ProfileComponent
+import { ModulesListComponent } from './features/courses/modules-list/modules-list';
+import { ModuleDetailComponent } from './features/courses/module-detail/module-detail';
+import { CourseDetailComponent } from './features/courses/course-detail/course-detail';
+import { ProfileComponent } from './features/profile/profile';
 import { ContentUploadComponent } from './features/content-upload/content-upload';
+import { AdminGuard } from './core/guards/admin.guard';
+import { MainLayoutComponent } from './layout/main-layout/main-layout';
 
-export const routes: Routes = [ // Importar un componente de ejemplo para ruta protegida
+
+export const routes: Routes = [
+  // Rutas de Autenticación (SIN el Layout Principal)
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // Ruta protegida: Ejemplo de dashboard
- {
-    path: 'dashboard',
-    component: DashboardComponent, // Usar un componente para la ruta protegida
-    canActivate: [authGuard] // Aplicar el guardia aquí
-  },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Redirigir de la raíz a dashboard (ahora protegido)
-  // Rutas protegidas para el Portal de Capacitaciones
+
+  // Ruta principal que utiliza el Layout
   {
-    path: 'courses/modules',
-    component: ModulesListComponent, // Componente para la lista de módulos
-    canActivate: [authGuard] // Aplicar el guardia aquí
+    path: '', // La ruta principal será el punto de entrada al layout
+    component: MainLayoutComponent,
+    canActivate: [authGuard], // Proteger el acceso al layout mismo
+    children: [ // Rutas Hijas que se cargarán DENTRO del <router-outlet> del Layout
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'courses/modules', component: ModulesListComponent },
+      { path: 'courses/modules/:moduleId', component: ModuleDetailComponent },
+      { path: 'courses/courses/:courseId', component: CourseDetailComponent },
+      { path: 'profile', component: ProfileComponent },
+      // Ruta de subida de contenido (protegida adicionalmente por AdminGuard)
+      {
+        path: 'content-upload',
+        component: ContentUploadComponent,
+        canActivate: [AdminGuard] // AdminGuard se aplica AQUÍ como guardia hija
+      },
+      // Redirigir la ruta raíz protegida ('' dentro del layout) al dashboard
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
   },
-  {
-    path: 'courses/modules/:moduleId',
-    component: ModuleDetailComponent, // Componente para el detalle del módulo/lista de cursos
-    canActivate: [authGuard] // Aplicar el guardia aquí
-  },
-  {
-    path: 'courses/courses/:courseId',
-    component: CourseDetailComponent, // Componente para el detalle del curso/lista de capítulos
-    canActivate: [authGuard] // Aplicar el guardia aquí
-  },
-  // Nueva ruta protegida para el Perfil
- {
-    path: 'profile',
-    component: ProfileComponent, // Componente para el perfil de usuario
-    canActivate: [authGuard] // Proteger con el guardia
-  },
-  {
-    path: 'upload',
-    component: ContentUploadComponent, // Componente para el perfil de usuario
-    canActivate: [authGuard] // Proteger con el guardia
-  }
+
   // TODO: Add a wildcard route for 404 page
-  // TODO: Refine protected routes structure (e.g., child routes)
 ];

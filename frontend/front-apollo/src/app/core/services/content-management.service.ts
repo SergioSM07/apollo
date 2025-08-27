@@ -50,6 +50,16 @@ export class ContentManagementService {
     return addDoc(chaptersCollection, chapterData).then(docRef => docRef.id);
   }
 
+  // Función auxiliar para limpiar propiedades con valor undefined
+  private cleanUndefinedProperties(obj: any): any {
+    const cleanedObj: any = {};
+    Object.keys(obj).forEach(key => {
+      if (obj[key] !== undefined) { // Incluir la propiedad solo si NO es undefined
+        cleanedObj[key] = obj[key];
+      }
+    });
+    return cleanedObj; // Retornar un nuevo objeto
+  }
   // Método para crear un curso y sus capítulos, incluyendo subida de archivos
   // contentData podría ser un array de objetos representando los capítulos con su contenido
   async createCourseWithChapters(courseData: Omit<Course, 'id'>, chaptersContent: Array<{ name: string; type: string; file?: File; content?: string; }>): Promise<string> {
@@ -62,7 +72,7 @@ export class ContentManagementService {
       for (const chapterContent of chaptersContent) {
         let chapterData: Omit<Chapter, 'id'> = {
           name: chapterContent.name,
-          courseId: courseId,
+          courseId: courseId, 
           type: chapterContent.type,
           url: undefined,
           content: undefined
@@ -79,12 +89,13 @@ export class ContentManagementService {
           chapterData.content = chapterContent.content;
           console.log('Storing text content for chapter:', chapterContent.name);
         } else {
-            console.warn(`Chapter ${chapterContent.name}: Content type ${chapterContent.type} specified, but no file or text content provided.`);
-            continue;
+          console.warn(`Chapter ${chapterContent.name}: Content type ${chapterContent.type} specified, but no file or text content provided.`);
+          continue;
         }
 
-        // 3. Crear el documento del capítulo en Firestore
-        const chapterId = await this.createChapter(chapterData);
+        // Limpiar propiedades con valor undefined usando la función auxiliar
+        const cleanedChapterData = this.cleanUndefinedProperties(chapterData); // 3. Crear el documento del capítulo en Firestore
+        const chapterId = await this.createChapter(cleanedChapterData);
         console.log('Chapter document created with ID:', chapterId);
       }
 

@@ -61,5 +61,16 @@ export class CoursesService {
     );
   }
 
+  // Nuevo método para obtener todos los cursos
+  getAllCourses(): Observable<Course[]> {
+    const coursesCollection = collection(this.firestore, 'courses');
+    return from(getDocs(coursesCollection)).pipe(
+      map(snapshot => snapshot.docs.map(doc => {
+        const data = doc.data() as any; // Usar any temporalmente
+        return { id: doc.id, name: data['name'], moduleId: data['moduleId'], ...data }; // Mapeo similar a getCoursesByModule
+      }))
+    );
+  }
+
   // TODO: Add methods for subida de contenido, seguimiento de progreso, insignias, notificaciones
 }

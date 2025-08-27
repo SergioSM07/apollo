@@ -27,3 +27,15 @@
   height: 80px;
   margin-bottom: 10px;
 }
+
+.course-history-list {
+  margin-top: 15px; // Espacio entre la sección de insignias y el historial de cursos
+}
+
+.course-history-list mat-list {
+  border: 1px solid #eee; // Borde alrededor de la lista
+}
+
+.course-history-list mat-list-item {
+  border-bottom: 1px solid #eee; // Separador entre elementos de la lista
+}

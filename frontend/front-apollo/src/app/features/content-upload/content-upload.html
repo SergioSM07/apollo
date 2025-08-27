@@ -14,7 +14,8 @@
           <mat-form-field appearance="fill">
             <mat-label>Course Name</mat-label>
             <input matInput formControlName="name" required>
-            <mat-error *ngIf="uploadForm.get('course.name')?.hasError('required') && uploadForm.get('course.name')?.touched">
+            <mat-error
+              *ngIf="uploadForm.get('course.name')?.hasError('required') && uploadForm.get('course.name')?.touched">
               Course name is required
             </mat-error>
           </mat-form-field>
@@ -26,7 +27,8 @@
                 {{ module.viewValue }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="uploadForm.get('course.moduleId')?.hasError('required') && uploadForm.get('course.moduleId')?.touched">
+            <mat-error
+              *ngIf="uploadForm.get('course.moduleId')?.hasError('required') && uploadForm.get('course.moduleId')?.touched">
               Module is required
             </mat-error>
           </mat-form-field>
@@ -36,13 +38,15 @@
         <div class="chapters-group">
           <h3>Chapters</h3>
           <!-- Iterar sobre el FormArray de capítulos -->
-          <div *ngFor="let chapterFormGroup of chapters.controls; let i = index" [formGroupName]="i" class="chapter-item">
+          <div *ngFor="let chapterFormGroup of chapterFormGroups; let i = index" [formGroup]="chapterFormGroup"
+            class="chapter-item">
             <h4>Chapter {{ i + 1 }}</h4>
 
             <mat-form-field appearance="fill">
               <mat-label>Chapter Name</mat-label>
               <input matInput formControlName="name" required>
-              <mat-error *ngIf="chapters.at(i)?.get('name')?.hasError('required') && chapters.at(i)?.get('name')?.touched">
+              <mat-error
+                *ngIf="chapters.at(i)?.get('name')?.hasError('required') && chapters.at(i)?.get('name')?.touched">
                 Chapter name is required
               </mat-error>
             </mat-form-field>
@@ -54,7 +58,8 @@
                   {{ type.viewValue }}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="chapters.at(i)?.get('type')?.hasError('required') && chapters.at(i)?.get('type')?.touched">
+              <mat-error
+                *ngIf="chapters.at(i)?.get('type')?.hasError('required') && chapters.at(i)?.get('type')?.touched">
                 Content type is required
               </mat-error>
             </mat-form-field>
@@ -62,7 +67,7 @@
             <!-- Campo de archivo (mostrar solo si el tipo no es 'text') -->
             <div *ngIf="chapters.at(i)?.get('type')?.value !== 'text'" class="file-upload-control">
               <input type="file" (change)="onFileSelected($event, i)">
-              <!-- TODO: Display selected file name -->
+              <p *ngIf="chapters.at(i)?.get('fileName')?.value">{{ chapters.at(i)?.get('fileName')?.value }}</p>
             </div>
 
             <!-- Campo de contenido de texto (mostrar solo si el tipo es 'text') -->
@@ -91,4 +96,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-<p>content-upload works!</p>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, setDoc, collection, query, where, getDocs } from '@angular/fire/firestore';
 import { Auth, user, User } from '@angular/fire/auth';
 import { Observable, from, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
@@ -85,6 +85,19 @@ export class UserProgressService {
         return Promise.resolve(); // No Firestore update needed
       })
     ).toPromise(); // Convert the resulting Observable back to a Promise
+  }
+
+  // Nuevo método para obtener el progreso de cursos completados de un usuario
+  getCompletedCoursesProgress(userId: string): Observable<UserProgress[]> {
+    const userProgressCollection = collection(this.firestore, 'userProgress');
+    // Consultar documentos de progreso donde userId coincida Y courseCompleted sea true
+    const q = query(userProgressCollection,
+                    where('userId', '==', userId),
+                    where('courseCompleted', '==', true));
+
+    return from(getDocs(q)).pipe(
+      map(snapshot => snapshot.docs.map(doc => doc.data() as UserProgress)) // Mapear a UserProgress (asumimos que el ID del documento no es crucial aquí)
+    );
   }
 
   // TODO: Implement logic to check if course is completed based on completed chapters
