@@ -11,25 +11,6 @@ import { ContentManagementService } from '../../core/services/content-management
 import { MatProgressBarModule } from '@angular/material/progress-bar'; // Importar MatProgressBarModule
 import { MatSnackBar } from '@angular/material/snack-bar'; // Importar MatSnackBar
 import { Subscription } from 'rxjs'; // Importar Subscription
-
-// Validador personalizado para requerir un campo si otro tiene un valor específico
-// No lo usaremos directamente en este enfoque, pero es una opción para validaciones cruzadas más complejas
-// function requiredIfTypeIs(typeControlName: string, requiredControlName: string, requiredTypeValue: string): ValidatorFn {
-//   return (formGroup: AbstractControl): { [key: string]: any } | null => {
-//     const typeControl = formGroup.get(typeControlName);
-//     const requiredControl = formGroup.get(requiredControlName);
-
-//     if (!typeControl || !requiredControl) {
-//       return null; // No aplicar validación si los controles no existen
-//     }
-
-//     if (typeControl.value === requiredTypeValue && !requiredControl.value) {
-//       return { requiredIf: true }; // Devolver error si se cumple la condición y el campo está vacío
-//     }
-
-//     return null; // No hay error
-//   };
-// }
 import { catchError, tap } from 'rxjs/operators'; // Importar operadores
 import { of } from 'rxjs'; // Importar of
 
@@ -212,7 +193,7 @@ export class ContentUploadComponent implements OnDestroy { // Implementar OnDest
           console.log('Course and chapters created successfully with ID:', courseId);
           this.isUploading = false; // Subida completada
           this.uploadProgress = 100; // Marcar progreso como 100%
-          this.snackBar.open('Course uploaded successfully!', 'Close', { duration: 3000 }); // Mostrar mensaje de éxito
+          this.snackBar.open('Se ha cargado un nuevo curso exitosamente!', 'Close', { duration: 3000 }); // Mostrar mensaje de éxito
           this.uploadForm.reset(); // Resetear el formulario
           this.chapters.clear(); // Limpiar el FormArray de capítulos
         })
@@ -220,7 +201,7 @@ export class ContentUploadComponent implements OnDestroy { // Implementar OnDest
           console.error('Error during course upload:', error);
           this.isUploading = false; // Subida finalizada con error
           this.uploadProgress = 0; // Resetear progreso o mostrar último progreso conocido
-          this.snackBar.open(`Error uploading course: ${error.message}`, 'Close', { duration: 5000 }); // Mostrar mensaje de error
+          this.snackBar.open(`Error cargando curso: ${error.message}`, 'Close', { duration: 5000 }); // Mostrar mensaje de error
         });
 
       // TODO: Implement detailed progress tracking by subscribing to uploadFile observable within createCourseWithChapters or here.

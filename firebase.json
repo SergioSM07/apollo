@@ -22,7 +22,7 @@
     }
   ],
   "hosting": {
-    "public": "frontend/front-apollo/dist/front-apollo",
+    "public": "frontend/front-apollo/dist/front-apollo/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

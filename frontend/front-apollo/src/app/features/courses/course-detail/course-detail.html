@@ -8,7 +8,7 @@
 
     <!-- Mostrar progreso general -->
     <div *ngIf="overallProgress$ | async as progress" class="overall-progress">
-      <p>Progress: {{ progress.completed }} / {{ progress.total }} Chapters Completed</p>
+      <p>Progreso: {{ progress.completed }} / {{ progress.total }} Capitulos Completados</p>
     </div>
 
     <mat-accordion> <!-- Usar mat-accordion para capítulos expandibles -->
@@ -24,18 +24,15 @@
                     </mat-checkbox>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Chapter content will go here.</p>
             <!-- Contenido del capítulo -->
             <div class="chapter-content">
                 <!-- TODO: Implement logic to display content based on chapter type -->
-                <p>Chapter content will go here.</p>
-
                 <div *ngIf="chapter.type === 'video'">
-                    <p>Video Player Placeholder</p>
+                    <p>Por favor visualizar el siguiente video</p>
                     <iframe [src]="chapter.url | safeUrl:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div *ngIf="chapter.type === 'pdf'">
-                    <p>PDF Viewer Placeholder</p>
+                    <p>Dando clic en el enlace podra acceder al contenido del capítulo</p>
                     <a [href]="chapter.url | safeUrl:'url'" target="_blank">View PDF</a>
                 </div>
                 <div *ngIf="chapter.type === 'text'">

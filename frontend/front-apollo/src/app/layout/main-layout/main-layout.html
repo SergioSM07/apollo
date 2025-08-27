@@ -4,27 +4,23 @@
         <mat-nav-list>
             <!-- Enlaces de navegación -->
             <ng-container *ngIf="isAuthenticated$ | async">
-                <a mat-list-item routerLink="/dashboard">
-                    <mat-icon>dashboard</mat-icon>
-                    <span>Dashboard</span>
-                </a>
                 <a mat-list-item routerLink="/courses/modules">
                     <mat-icon>school</mat-icon>
-                    <span>Training Portal</span>
+                    <span>Inicio</span>
                 </a>
                 <a mat-list-item routerLink="/profile">
                     <mat-icon>person</mat-icon>
-                    <span>Profile</span>
+                    <span>Perfil</span>
                 </a>
                 <!-- Enlace para Subida de Contenido (visible solo si el usuario es admin) -->
                 <a mat-list-item routerLink="/content-upload" *ngIf="isAdmin$ | async">
                     <mat-icon>cloud_upload</mat-icon>
-                    <span>Upload Content</span>
+                    <span>Crear nuevo curso</span>
                 </a>
                 <!-- Botón de Cerrar Sesión en la barra lateral -->
                 <a mat-list-item (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
-                    <span>Logout</span>
+                    <span>Salir</span>
                 </a>
             </ng-container>
             <!-- Opcional: Enlaces para Login/Registro si no está autenticado (menos común en el layout principal, ya que se redirige al login) -->
@@ -43,7 +39,7 @@
             <!-- <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button> -->
-            <span>Apollo Training Platform</span>
+            <span>Apollo Portal de Capacitación</span>
             <!-- TODO: Add user info or other elements to toolbar -->
             <!-- TODO: Add logout button to toolbar (alternative) -->
         </mat-toolbar>
