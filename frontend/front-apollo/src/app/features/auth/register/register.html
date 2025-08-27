@@ -1,39 +1,39 @@
 <div class="register-container">
   <mat-card class="register-card">
-    <mat-card-title>Register</mat-card-title>
+    <mat-card-title>Registro de Usuarios</mat-card-title>
     <mat-card-content>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
+          <mat-label>Correo Electrónico</mat-label>
           <input matInput type="email" formControlName="email" required>
           <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
-            Email is required
+            Correo es requerido
           </mat-error>
           <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
-            Enter a valid email
+            Ingresa un email válido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
+          <mat-label>Contraseña</mat-label>
           <input matInput type="password" formControlName="password" required>
           <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
-            Password is required
+            Contraseña es requerido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Confirm Password</mat-label>
+          <mat-label>Confirma Contraseña</mat-label>
           <input matInput type="password" formControlName="confirmPassword" required>
           <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
-            Confirm Password is required
+            Confirma Contraseña is required
           </mat-error>
           <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
-            Passwords do not match
+            Contraseñas no coinciden
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Registrarse</button>
       </form>
       <!-- Mostrar mensaje de error -->
       <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>

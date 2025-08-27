@@ -15,6 +15,10 @@ form.uploading {
   pointer-events: none; // Deshabilitar interacciones con el ratón
 }
 
+mat-card-title{
+  text-align: center;
+}
+
 .course-details-group,
 .chapters-group {
   margin-bottom: 20px;

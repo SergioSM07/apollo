@@ -36,7 +36,7 @@ export class ContentUploadComponent implements OnDestroy { // Implementar OnDest
 
   // Opciones para los tipos de contenido de capítulo
   chapterTypes = [
-    { value: 'video', viewValue: 'Video' },
+    { value: 'video', viewValue: 'Contenido Multimedia' },
     { value: 'pdf', viewValue: 'PDF' },
     { value: 'text', viewValue: 'Text' }
     // TODO: Add other content types as needed
