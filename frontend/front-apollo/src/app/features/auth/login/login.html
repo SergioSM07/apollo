@@ -4,34 +4,37 @@
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
+          <mat-label>Correo Electrónico</mat-label>
           <input matInput type="email" formControlName="email" required>
           <!-- Validación básica de Angular Material -->
           <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
-            Email is required
+            Correo es requerido
           </mat-error>
           <mat-error *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched">
-            Enter a valid email
+            Ingresa un email válido
           </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
+          <mat-label>Contraseña</mat-label>
           <input matInput type="password" formControlName="password" required>
           <!-- Validación básica de Angular Material -->
           <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
-            Password is required
+            Password es requerido
           </mat-error>
         </mat-form-field>
 
         <!-- Botón deshabilitado si el formulario no es válido -->
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
       </form>
+      <mat-card-actions class="login-actions">
+        <!-- Boton registro de usuarios -->
+        <!-- Prueba temporal con enlace simple -->
+        <!--<a href="/register">Registrarse</a>-->
+        <button mat-raised-button routerLink="/register">Registrate aquí</button>
+      </mat-card-actions>
       <!-- Mostrar mensaje de error -->
       <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     </mat-card-content>
   </mat-card>
-  <mat-card-actions class="login-actions">
-    <button mat-button routerLink="register">Don't have an account? Register here.</button>
-  </mat-card-actions>
 </div>
