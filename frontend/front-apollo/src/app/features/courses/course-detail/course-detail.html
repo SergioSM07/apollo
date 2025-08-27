@@ -1,10 +1,12 @@
 <div class="course-detail-container">
     <mat-card *ngIf="course$ | async as course">
-        <mat-card-title>{{ course?.name }}</mat-card-title>
+        <mat-card-content>
+            <h2>{{ course?.name }}</h2>
+        </mat-card-content>
         <!-- TODO: Display other course details like description -->
     </mat-card>
 
-    <h3>Chapters</h3>
+    <h3>Contenido del curso</h3>
 
     <!-- Mostrar progreso general -->
     <div *ngIf="overallProgress$ | async as progress" class="overall-progress">
@@ -28,7 +30,7 @@
             <div class="chapter-content">
                 <!-- TODO: Implement logic to display content based on chapter type -->
                 <div *ngIf="chapter.type === 'video'">
-                    <p>Por favor visualizar el siguiente video</p>
+                    <p>Por favor visualizar el siguiente contenido</p>
                     <iframe [src]="chapter.url | safeUrl:'resourceUrl'" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div *ngIf="chapter.type === 'pdf'">

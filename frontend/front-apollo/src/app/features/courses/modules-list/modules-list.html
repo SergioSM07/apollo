@@ -4,15 +4,14 @@
     podrás acceder a los cursos disponibles dando clic en cada uno de los módulos
     disponibles.
   </p>
-
-  <mat-list *ngIf="modules$ | async as modules">
-    <mat-list-item *ngFor="let module of modules">
-      <mat-card [routerLink]="['/courses/modules', module.id]">
-        <mat-card-title>{{ module.name }}</mat-card-title>
+ <div class="modules-grid"> <!-- Nuevo contenedor para el grid -->
+  <mat-card *ngFor="let module of modules$ | async" class="module-card" (click)="navigateToModule(module.id)">
+      <mat-card-content>
+        <h3>{{ module.name }}</h3>
         <!-- TODO: Add description or image if available in Module interface -->
-      </mat-card>
-    </mat-list-item>
-  </mat-list>
+      </mat-card-content>
+    </mat-card>
+ </div>
 
   <!-- TODO: Add a message if no modules are available -->
 </div>

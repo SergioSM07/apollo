@@ -3,19 +3,30 @@
 }
 
 .modules-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-mat-list-item {
-  margin-bottom: 10px; // Espacio entre elementos de la lista
+.modules-container p {
+  margin-bottom: 20px;
+  color: #666; // Color de texto para la descripción
+}
+
+.modules-grid {
+  display: grid; // Usar CSS Grid
+  gap: 20px; // Espacio entre elementos del grid
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); // Columnas responsivas
 }
 
 mat-card {
   cursor: pointer; // Indica que la tarjeta es clicable
-  transition: box-shadow 0.3s ease-in-out; // Animación suave al pasar el ratón
+  transition: transform 0.2s ease-in-out; // Animación al pasar el mouse
 }
 
 mat-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Sombra al pasar el ratón
+  transform: translateY(-5px); // Efecto de elevación al pasar el mouse
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra al pasar el mouse
+}
+
+mat-card h3 {
+  margin: 0; // Eliminar margen por defecto del h3 dentro de la tarjeta
 }

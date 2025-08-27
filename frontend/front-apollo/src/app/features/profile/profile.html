@@ -1,13 +1,13 @@
 <div class="profile-container">
     <mat-card *ngIf="user$ | async as user">
-        <mat-card-title>User Profile</mat-card-title>
+        <mat-card-title>Perfil de Usuario</mat-card-title>
         <mat-card-content>
             <p>Email: {{ user?.email }}</p>
             <!-- TODO: Display other user information if available (e.g., name, photo) -->
         </mat-card-content>
     </mat-card>
 
-    <h3>Obtained Badges</h3>
+    <h3>Insignias Obtenidas</h3>
 
     <!-- Mostrar insignias obtenidas en un grid o lista -->
     <div *ngIf="obtainedBadgesWithDetails$ | async as userBadges" class="badges-grid">
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Sección de Historial de Cursos Completados -->
-    <h3>Completed Course History</h3>
+    <h3>Historico de Cursos Completados</h3>
 
     <div *ngIf="completedCoursesHistory$ | async as completedCourses" class="course-history-list">
         <mat-list>
