@@ -1,0 +1,72 @@
+.content-upload-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center; // Centrar el formulario horizontalmente
+}
+
+.content-upload-container mat-card {
+  width: 100%;
+  max-width: 600px; // Ancho máximo para el formulario
+}
+
+/* Estilo para deshabilitar el formulario durante la subida */
+form.uploading {
+  opacity: 0.6; // Reducir opacidad
+  pointer-events: none; // Deshabilitar interacciones con el ratón
+}
+
+.course-details-group,
+.chapters-group {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc; // Separador visual entre secciones
+}
+
+.course-details-group mat-form-field,
+.chapters-group mat-form-field {
+  width: 100%; // Campos de formulario ocupan todo el ancho
+  margin-bottom: 15px;
+}
+
+/* Estilo para la barra de progreso */
+mat-progress-bar {
+  margin-bottom: 15px;
+}
+
+/* Estilo para el texto de progreso */
+.content-upload-container p {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.chapter-item {
+  border: 1px solid #eee; // Borde alrededor de cada capítulo
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative; // Para posicionar el botón de eliminar
+}
+
+.chapter-item h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.chapter-item .file-upload-control,
+.chapter-item mat-form-field {
+  margin-bottom: 10px; // Espacio entre elementos dentro de un capítulo
+}
+
+.chapter-item button[mat-icon-button] {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.chapters-group > button[mat-raised-button] { // Botón de "Add Chapter"
+  margin-bottom: 20px;
+}
+
+button[type="submit"] { // Botón de envío principal
+  width: 100%;
+}

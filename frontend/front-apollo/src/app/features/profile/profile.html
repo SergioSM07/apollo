@@ -1,0 +1,53 @@
+<div class="profile-container">
+    <mat-card *ngIf="user$ | async as user">
+        <mat-card-title>User Profile</mat-card-title>
+        <mat-card-content>
+            <p>Email: {{ user?.email }}</p>
+            <!-- TODO: Display other user information if available (e.g., name, photo) -->
+        </mat-card-content>
+    </mat-card>
+
+    <h3>Obtained Badges</h3>
+
+    <!-- Mostrar insignias obtenidas en un grid o lista -->
+    <div *ngIf="obtainedBadgesWithDetails$ | async as userBadges" class="badges-grid">
+        <!-- Usar mat-grid-list si prefieres un grid visual -->
+        <!-- <mat-grid-list cols="3" rowHeight="1:1"> -->
+        <!-- <mat-grid-tile *ngFor="let userBadge of userBadges"> -->
+        <!-- Mostrar imagen y nombre de la insignia -->
+        <!-- <img [src]="userBadge.badgeDetails?.imageUrl" alt="{{ userBadge.badgeDetails?.name }}"> -->
+        <!-- <mat-grid-tile-footer> -->
+        <!-- <h3>{{ userBadge.badgeDetails?.name }}</h3> -->
+        <!-- </mat-grid-tile-footer> -->
+        <!-- </mat-grid-tile> -->
+        <!-- </mat-grid-list> -->
+
+        <!-- O usar una lista simple con tarjetas -->
+        <mat-card *ngFor="let userBadge of userBadges" class="badge-card">
+            <mat-card-content>
+                <img [src]="userBadge.badgeDetails?.imageUrl" alt="{{ userBadge.badgeDetails?.name }}"
+                    class="badge-image">
+                <h4>{{ userBadge.badgeDetails?.name }}</h4>
+                <p>{{ userBadge.badgeDetails?.description }}</p>
+                <p>Obtained: {{ formatObtainedDate(userBadge.obtainedDate) }}</p>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- TODO: Add a message if no badges obtained -->
+    </div>
+
+    <!-- Sección de Historial de Cursos Completados -->
+    <h3>Completed Course History</h3>
+
+    <div *ngIf="completedCoursesHistory$ | async as completedCourses" class="course-history-list">
+        <mat-list>
+            <mat-list-item *ngFor="let course of completedCourses">
+                <h4 matListItemTitle>{{ course.courseDetails?.name }}</h4>
+                <p matListItemLine>Completed on: {{ formatCompletionDate(course.completionDate) }}</p>
+                <!-- TODO: Add more course details if needed -->
+            </mat-list-item>
+        </mat-list>
+
+        <!-- TODO: Add a message if no courses completed -->
+    </div>
+</div>

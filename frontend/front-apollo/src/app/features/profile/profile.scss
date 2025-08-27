@@ -1,0 +1,41 @@
+.profile-container {
+  padding: 20px;
+}
+
+.profile-container mat-card {
+  margin-bottom: 20px;
+}
+
+.profile-container h3 {
+  margin-bottom: 15px;
+}
+
+.badges-grid {
+  display: flex; // Usar flexbox para envolver las tarjetas de insignias
+  flex-wrap: wrap; // Permitir que las tarjetas se envuelvan en múltiples líneas
+  gap: 15px; // Espacio entre tarjetas
+  justify-content: center; // Centrar las tarjetas horizontalmente
+}
+
+.badge-card {
+  width: 200px; // Ancho fijo para las tarjetas de insignias (ajusta según necesites)
+  text-align: center;
+}
+
+.badge-image {
+  width: 80px; // Tamaño de la imagen de la insignia
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.course-history-list {
+  margin-top: 15px; // Espacio entre la sección de insignias y el historial de cursos
+}
+
+.course-history-list mat-list {
+  border: 1px solid #eee; // Borde alrededor de la lista
+}
+
+.course-history-list mat-list-item {
+  border-bottom: 1px solid #eee; // Separador entre elementos de la lista
+}

@@ -1,0 +1,36 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra verticalmente en la ventana */
+    background-color: #f0f0f0; /* Color de fondo suave */
+  }
+  
+  .login-card {
+    width: 90%; /* Ancho en pantallas pequeñas */
+    max-width: 400px; /* Ancho máximo en pantallas grandes */
+    padding: 20px;
+    text-align: center; /* Centra el contenido dentro de la tarjeta */
+  }
+  
+  .login-card mat-form-field {
+    width: 100%; /* Campos de formulario ocupan todo el ancho */
+    margin-bottom: 15px; /* Espacio entre campos */
+  }
+  
+  .login-card button {
+    width: 100%; /* Botón ocupa todo el ancho */
+  }
+  
+  /* Media query para responsive (opcional, solo un ejemplo) */
+  @media (max-width: 600px) {
+    .login-card {
+      width: 95%;
+    }
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  

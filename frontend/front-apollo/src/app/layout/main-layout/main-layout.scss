@@ -1,0 +1,38 @@
+.main-layout-container {
+  height: 100vh; // Hacer que el contenedor ocupe toda la altura de la ventana
+}
+
+.main-layout-sidenav {
+  width: 250px; // Ancho de la barra lateral (ajusta según necesites)
+}
+
+.main-layout-content {
+  display: flex;
+  flex-direction: column; // Contenido en columna (barra de herramientas + área de router-outlet)
+}
+
+.router-outlet-container {
+  padding: 20px; // Relleno alrededor del contenido principal
+  flex-grow: 1; // Hacer que el área del router-outlet ocupe el espacio restante
+  overflow: auto; // Añadir scroll si el contenido es muy largo
+}
+
+mat-toolbar {
+  // Estilos para la barra de herramientas
+}
+
+mat-sidenav {
+  // Estilos para la barra lateral
+}
+
+mat-nav-list {
+  // Estilos para la lista de navegación
+}
+
+mat-list-item {
+  // Estilos para los elementos de la lista de navegación
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto; // Permite que el elemento ocupe todo el espacio disponible
+}

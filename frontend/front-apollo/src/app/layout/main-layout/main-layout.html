@@ -1,0 +1,53 @@
+<mat-sidenav-container class="main-layout-container">
+    <!-- Barra lateral (opcional) -->
+    <mat-sidenav #sidenav mode="side" opened class="main-layout-sidenav">
+        <mat-nav-list>
+            <!-- Enlaces de navegación -->
+            <ng-container *ngIf="isAuthenticated$ | async">
+                <a mat-list-item routerLink="/courses/modules">
+                    <mat-icon>school</mat-icon>
+                    <span>Inicio</span>
+                </a>
+                <a mat-list-item routerLink="/profile">
+                    <mat-icon>person</mat-icon>
+                    <span>Perfil</span>
+                </a>
+                <!-- Enlace para Subida de Contenido (visible solo si el usuario es admin) -->
+                <a mat-list-item routerLink="/content-upload" *ngIf="isAdmin$ | async">
+                    <mat-icon>cloud_upload</mat-icon>
+                    <span>Crear nuevo curso</span>
+                </a>
+                <!-- Botón de Cerrar Sesión en la barra lateral -->
+                <a mat-list-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Salir</span>
+                </a>
+            </ng-container>
+            <!-- Opcional: Enlaces para Login/Registro si no está autenticado (menos común en el layout principal, ya que se redirige al login) -->
+            <!-- <a mat-list-item routerLink="/login">
+          <mat-icon>cloud_upload</mat-icon>
+          <span>Upload Content</span>
+        </a> -->
+            <!-- TODO: Add logout button -->
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-layout-content">
+        <!-- Barra de herramientas superior -->
+        <mat-toolbar color="primary">
+            <!-- Botón para alternar la barra lateral (si mode no es 'side') -->
+            <!-- <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button> -->
+            <span>Apollo Portal de Capacitación</span>
+            <!-- TODO: Add user info or other elements to toolbar -->
+            <!-- TODO: Add logout button to toolbar (alternative) -->
+        </mat-toolbar>
+
+        <!-- Área donde se cargarán los componentes de las rutas -->
+        <div class="router-outlet-container">
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
